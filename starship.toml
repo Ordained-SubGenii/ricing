@@ -1,0 +1,94 @@
+# ~/.config/starship.toml
+#
+## Created on: 02/16/22
+## Modified on: 02/19/22
+
+# Use custom format
+format = """
+$time\
+$username\
+$hostname\
+$status\
+$jobs\
+$cmd_duration
+[└弄](bold purple) $directory$character"""
+
+
+
+# Wait 6  milliseconds for starship to check files under the current directory.
+scan_timeout = 6
+
+# Inserts a blank line between shell prompts
+add_newline = true # switchable depending on desired aesthetics
+
+[character]
+success_symbol = "[:](#2eb82e) "
+#error_symbol = " (bold red)" # Commented out b/c error code function already in .bashrc (The format string used before the text input if the previous command failed.)
+
+[time]
+disabled = false
+format = "[<$time>]($style) "
+style = "#ff3399"
+time_format = "%T"
+
+[package]
+disabled = true # Disable the package module, hiding it from the prompt completely
+
+[cmd_duration]
+min_time = 500
+format = "[\\($duration\\)](#ffb366)"
+disabled = false 
+
+[directory]
+truncation_length = 8
+truncation_symbol = "…/"
+format = "[  $path ]($style)[$read_only]($read_only_style)"
+style = "bold purple"
+read_only = "🔒"
+read_only_style = "#ff661a"
+home_symbol = "ﰣ" 
+
+[hostname]
+ssh_only = false
+format = "[[\\( \\)](white)$hostname]($style)\\]" 
+style = "#00bfff"
+disabled = false
+
+[jobs]
+format = "[﫿(#ff8000){jobs=$number}]($style)"
+symbol = "+"
+style = "bold blue"
+number_threshold = 0 # Set to 0 to show total number of bg jobs even if 0
+symbol_threshold = 0 # Set to 0 to show symbol if 1 or more bg jobs running
+disabled = true # Disabled
+
+[status]
+format = "[$symbol$status]($style) " 	
+symbol = "✖" 	
+not_executable_symbol = "🚫"
+not_found_symbol = "🔍"
+sigint_symbol = "##"
+signal_symbol = "⚡"
+style = "bold red"
+recognize_signal_code = true
+disabled = true # Disabled b/c .bashrc already has error code function
+
+[username]
+style_user = "#66ccff"
+style_root = "bright red"
+format = "[[\\[](white)$user]($style)"
+disabled = false
+show_always = true 
+
+[rust]
+format = "[$symbol files]($style)"
+#version_format = "v${raw}"
+symbol = " ust"
+dettect_extensions = ["rs"] 
+detect_files = ["Cargo.toml"]
+detect_folders = [] 
+style = "#ff8000"
+disabled = false # disabled
+
+[line_break]
+disabled = true # disabled
